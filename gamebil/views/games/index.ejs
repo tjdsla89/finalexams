@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../include/head %>
+  </head>
+  <body>
+    <header>
+      <% include ../include/header %>
+    </header>
+    <div class="posts">
+    <% include include/top %>
+<!-- main start-->
+
+<!-- views/posts/index.ejs -->
+<div class="index">
+  <a href="/games/new"><button class="button" >새 게임등록</button></a>
+  <ul>
+      <li class="header"> <span>출시일</span>게임 이름<span>제작사</span><span>개발사</span><span>등록일</span></li>
+    <% data.forEach( function(e) { %>
+      <li>
+        <span><%= e.Releasedate.toLocaleDateString() %></span>
+        <a href="/games/<%= e._id %>"><%= e.title %></a>
+        <span><%= e.production %></span>
+        <span><%= e.developer %></span>
+        <span><%= e.createdAt.toLocaleDateString() %></span>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
+<!-- main end -->
+    </div><!--posts end -->
+    <footer>
+      <% include ../include/footer %>
+    </footer>
+  </body>
+</html>

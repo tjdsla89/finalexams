@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../include/head %>
+  </head>
+  <body>
+    <header>
+      <% include ../include/header %>
+    </header>
+    <div class="posts">
+    <% include include/top %>
+<!-- main start-->
+
+<!-- views/posts/show.ejs -->
+<div class="show">
+  <h3><%= data.title %></h3>
+  <div>
+      <label>출시일 : </label>
+      <%= data.Releasedate.toLocaleDateString() %>
+  </div>
+  <div>
+      <label>제작사 : </label>
+      <%= data.production %>
+  </div>
+  <div>
+      <label>개발자 : </label>
+      <%= data.developer %>
+  </div>
+  <div class="time">Created at <br>
+    <%= data.createdAt.toLocaleDateString() %> <br>
+    <%= data.createdAt.toLocaleTimeString() %>
+  </div>
+  <% if(data.updatedAt) { %>
+    <div class="time">Updated at <br>
+      <%= data.updatedAt.toLocaleDateString() %> <br>
+      <%= data.updatedAt.toLocaleTimeString() %>
+    </div>
+  <% } %>
+  <p class="body"><%= data.body %><p>
+  <div class="tools">
+    <a href="/games/<%= data._id %>/edit"><button class="btn1">Edit</button></a>
+    <!-- Delete button here -->
+    <form class="btn_delete" action="/games/<%=data._id%>?_method=delete" method="post">
+      <button type="submit" class="btn1">Delete</button>
+    </form>
+  </div>
+  <a href="/games"><button class="btn1">Back</button>
+</div>
+
+<!-- main end -->
+    </div><!--posts end -->
+    <footer>
+      <% include ../include/footer %>
+    </footer>
+  </body>
+</html>
